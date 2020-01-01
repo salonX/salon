@@ -34,7 +34,17 @@
       </ul>
     </div>
   </div>
-  <button class="btn btn-primary my-2 my-sm-0" type="submit" style="border-radius: 0;">Login/signup</button>
+
+  <?php if(isset($_SESSION['user'])){ ?>
+    <a href="auth/logout.php">
+      <button class="btn btn-primary my-2 my-sm-0" type="button" style="border-radius: 0;">Logout</button>
+    </a>
+  <?php } else { ?>
+    <a href="register/login.php">
+      <button class="btn btn-primary my-2 my-sm-0" type="button" style="border-radius: 0;">Login/signup</button>
+    </a>
+  <?php }?>
+
 </nav>
 <div class="line"></div>
 <script>
