@@ -240,7 +240,6 @@
 				<div class="row">
 					<div class="col-1"></div>
 					<div class="col-sm-10">
-					 <form action="../auth/signup.php" method="post">
 						<h1 class="text-center text-success"><b>Sign Up</b></h1>
 				        <p class="text-center text-muted">Sign in with your social media account</p>
 						<div class="social-btn text-center">
@@ -261,65 +260,69 @@
 						<br>
 
 						<!-- ###### USER FORM ########### -->
+					<form action="../auth/signup.php" method="post" enctype="multipart/form-data">
 						<div id="user_form" class="animated fadeIn">
 							<div class="form-row">
 								<div class="form-group col-md-12">
-							      <input type="text" class="form-control" placeholder="Name" required="required">
+							      <input type="text" class="form-control" placeholder="Name" name="name" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-							      <input type="email" class="form-control" placeholder="Email" required="required">
+							      <input type="email" class="form-control" placeholder="Email" name="email" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-							      <input type="password" class="form-control"  placeholder="Password" required="required">
+							      <input type="password" class="form-control"  placeholder="Password" name="password" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-							      <input type="text" class="form-control" placeholder="Gender" required="required">
+							      <input type="text" class="form-control" placeholder="Gender" name="gender" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-							      <input type="text" class="form-control"  placeholder="DOB" required="required">
+							      <input type="date" class="form-control"  placeholder="DOB" name="dob" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-							      <input type="text" class="form-control" placeholder="Area" required="required">
+							      <input type="text" class="form-control" placeholder="Area" name="area" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-							      <input type="number" class="form-control"  placeholder="Phone" required="required">
+							      <input type="number" class="form-control"  placeholder="Phone" name="phone" required="required">
 							    </div>
+							  </div>
+							  	<input type="hidden" name="role" value="0">
+							  <div class="form-group">
+							    <textarea type="text" class="form-control" rows="2" name="address" placeholder="Address"></textarea>
 							  </div>
 							  <div class="form-group">
-							    <textarea type="text" class="form-control" rows="2" placeholder="Address"></textarea>
-							  </div>
+				           		 <button type="submit" class="btn btn-success btn-lg btn-block signup-btn" name="signup">Signup</button>
+				        	</div>
 						</div>
-
+					 </form>
 
 						<!-- ######## SALON FORM ############ -->
-
+					 <form action="../auth/signup.php" method="post" enctype="multipart/form-data">
 						<div id="salon_form" class="animated fadeIn" style="display: none;">
 							<div class="form-row">
 								<div class="form-group col-md-12">
-							      <input type="text" class="form-control" placeholder="Salon Name" required="required">
+							      <input type="text" class="form-control" placeholder="Salon Name" name="name" required="required">
 							    </div>
 							    <div class="form-group col-md-12">
-							      <input type="email" class="form-control" placeholder="Email" required="required">
+							      <input type="email" class="form-control" placeholder="Email" name="email" required="required">
 							    </div>
 							    <div class="form-group col-md-12">
-							      <input type="password" class="form-control"  placeholder="Password" required="required">
+							      <input type="password" class="form-control"  placeholder="Password" name="password" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-							      <input type="text" class="form-control" placeholder="Area" required="required">
+							      <input type="text" class="form-control" placeholder="Area" name="area" required="required">
 							    </div>
 							    <div class="form-group col-md-6">
-							      <input type="number" class="form-control"  placeholder="Phone" required="required">
+							      <input type="number" class="form-control"  placeholder="Phone" name="phone" required="required">
 							    </div>
 							  </div>
+							  	<input type="hidden" name="role" value="1">
 							  <div class="form-group">
-							    <textarea type="text" class="form-control" rows="2" placeholder="Address"></textarea>
+							    <textarea type="text" class="form-control" rows="2" placeholder="Address" name="address"></textarea>
 							  </div>
+							   <div class="form-group">
+				            	<button type="submit" class="btn btn-success btn-lg btn-block signup-btn" name="signup">Signup</button>
+				        	   </div>
 						</div>
-
-
-				        <div class="form-group">
-				            <button type="submit" class="btn btn-success btn-lg btn-block signup-btn" name="submit">Signup</button>
-				        </div>
 			    	  </form>
 					</div>
 
