@@ -2,6 +2,7 @@
 
 	include "connection.php" ;	
 	include "encryption.php" ;
+	include "../services/email.service.php" ;
 
 	$enc = new Encryption() ;
 
@@ -31,7 +32,7 @@
 		}
 
 		$auth_query = "INSERT INTO authentication (email , password , is_verified , is_paid , is_salon , is_logged_in) 
-					   VALUES ('$email' , '$password' , '1' , '1' , '$role' , 1)" ;
+					   VALUES ('$email' , '$password' , '0' , '1' , '$role' , 0)" ;
 
 		$auth_result = mysqli_query($conn, $auth_query) ;
 
@@ -45,6 +46,9 @@
 			$row = mysqli_fetch_assoc($id_result) ;
 			$id = $row['auth_id'] ;
 
+			//SENDING VERIFICATION MAIL
+			emailService($conn , $id , $email , $role) ;
+
 			if($role == '1'){
 				$salon_query = "INSERT INTO salon (name , phone_number , email , address , area , salon_id , time) 
 								VALUES ('$name' , {$phone} , '$email' , '$address' , '$area' , '$id' , now())" ;
@@ -54,7 +58,6 @@
 					die("QUERY ERROR ".mysqli_error($conn)) ;
 				}	
 				else{
-					
 					header("Location: ../index.php") ;
 				}			
 			}

@@ -4,14 +4,7 @@
 <?php 
 
     // USER LOGOUT SUCCESSFULLY
-	 $agent_id = $_SESSION['user'] ;
-
-	 $delete_query = "DELETE FROM log_information WHERE agent_id = $agent_id"  ;
-	 $delete_result = mysqli_query($conn , $delete_query) ;
-
-	 if(!$delete_result) {
-	 	die("DELETE QUERY FAILED AT LOGOUT ".mysqli_error($conn)) ;
-	 }
+	 $agent_id = $_SESSION['user'] 
 
 	 // TO CHANGE IS LOGGIN IN THE AUTHENTICATION TABLE
 	 $update_query = "UPDATE authentication SET is_logged_in = 0 WHERE auth_id = $agent_id" ;
