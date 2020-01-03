@@ -1,10 +1,12 @@
+<script src="../js/cookie.js"></script>
 <?php 
 	
 
 	function Login($conn , $email , $password) {
 		$email = mysqli_real_escape_string($conn , $email) ;
 		$password = mysqli_real_escape_string($conn , $password);
-
+		// hashing of password
+		$password=$enc->level_4($password);
 		$enc = new Encryption() ;
 
 		$query = "SELECT * FROM authentication WHERE email = '$email' " ;
@@ -19,8 +21,8 @@
 			$fetched_password = $row['password'] ;
 			$agent_id = $row['auth_id'] ;
 			$isSalon = $row['is_salon'] ;
-
-			$enc_password = $enc->level_1($fetched_password) ;
+			// there was a confusionhere coz passowd in db already encrypted
+			$enc_password = $fetched_password;
 
 			if($email !== $fetched_email){
 				header("Location: ../register/login.php?r=izlea") ;
@@ -58,6 +60,48 @@
 				session_start() ;
 				$_SESSION['user'] = $enc->level_2($row['auth_id']);
 				$_SESSION['role'] = $enc->level_2($row['is_salon']) ;
+
+				// set cookie for the data after login
+				// THIS IS THE SCRIPT : WHICH SET DATA INTO BROWSER > DETAILS OF USER/SALON
+
+				if($row['is_salon']==0){
+					$sql_for_user_data="SELECT name,date_of_birth,gender,phone_number,email,area,city,image FROM user where user_id=9";
+					$user_data=mysqli_query($conn,$sql_for_user_data);
+					$count=mysqli_num_rows($user_data);
+					if($count==1){
+						$user_row=mysqli_fetch_assoc($user_data);
+						
+						?>
+						<script>
+						// this will set cookie for 3 days
+						// go throgth it --> ../js/cookie.js
+						setCookie("user_info", JSON.stringify(<?php echo json_encode($user_row)?>),3);
+						// console.log(getCookie("user_info"));
+						</script>
+						<?php
+						
+					}else{
+						header("Location: logout.php");
+					}
+
+				}else{
+					$sql_for_salon_data="SELECT name,email,phone_number,address,area,city,image FROM salon where salon_id=".$row['auth_id'];
+					$salon_data=mysqli_query($conn,$sql_for_salon_data);
+					$count=mysqli_num_rows($salon_data);
+					if($count==1){
+						$salon_row=mysqli_fetch_assoc($salon_data);
+						?>
+						<script>
+						// this will set cookie for 3 days
+						// go throgth it --> ../js/cookie.js
+						setCookie("salon_info", JSON.stringify(<?php echo json_encode($salon_row)?>),3);
+						</script>
+						<?php
+					}else{
+						header("Location: logout.php");
+					}
+				}
+
 
 				header("Location: ../index.php");
 			}

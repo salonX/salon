@@ -1,6 +1,10 @@
 <?php session_start(); ?>
 <?php include "connection.php" ;?>
-
+<script src="../js/cookie.js"></script>
+<script>
+setCookie("user_info","",-1);
+setCookie("salon_info","",-1);
+</script>
 <?php 
 
     // USER LOGOUT SUCCESSFULLY
@@ -15,7 +19,8 @@
 	 }
 
      $_SESSION['user'] = NULL ;
-     $_SESSION['role'] = NULL ;
+	 $_SESSION['role'] = NULL ;
+	 
 
    header("Location: ../index.php") ;
 
