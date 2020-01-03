@@ -12,8 +12,15 @@
 
         public function level_1($data)
         {
-            # code...
-            return $data;
+            $ciphering = "AES-128-CTR"; 
+            $iv_length = openssl_cipher_iv_length($ciphering); 
+            $options = 0;
+            $encryption_iv = "9998-7785-998565";
+            $encryption_key = "7865-2365-9878-2023";
+            return openssl_encrypt($data, $ciphering, 
+                                    $encryption_key, $options, 
+                                    $encryption_iv
+                                ); 
         }
 
         public function level_2($data)
@@ -30,8 +37,8 @@
 
         public function level_4($data)
         {
-            # code...
-            return $data;
+            $r = hash("whirlpool", $data, false);
+            return $r;
         }
     }
 

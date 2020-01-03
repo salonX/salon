@@ -33,7 +33,7 @@
 		}
 
 		$auth_query = "INSERT INTO authentication (email , password , is_verified , is_paid , is_salon , is_logged_in) 
-					   VALUES ('$email' , '$password' , '0' , '1' , '$role' , 0)" ;
+					   VALUES ('$email' , '$enc->level_4($password)' , '0' , '1' , '$role' , 0)" ;
 
 		$auth_result = mysqli_query($conn, $auth_query) ;
 
