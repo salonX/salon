@@ -4,7 +4,7 @@
 <?php 
 
     // USER LOGOUT SUCCESSFULLY
-	 $agent_id = $_SESSION['user'] 
+	 $agent_id = $_SESSION['user'] ;
 
 	 // TO CHANGE IS LOGGIN IN THE AUTHENTICATION TABLE
 	 $update_query = "UPDATE authentication SET is_logged_in = 0 WHERE auth_id = $agent_id" ;

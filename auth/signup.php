@@ -3,6 +3,7 @@
 	include "connection.php" ;	
 	include "encryption.php" ;
 	include "../services/email.service.php" ;
+	include "../services/login.service.php" ;
 
 	$enc = new Encryption() ;
 
@@ -47,7 +48,7 @@
 			$id = $row['auth_id'] ;
 
 			//SENDING VERIFICATION MAIL
-			emailService($conn , $id , $email , $role) ;
+			// emailService($conn , $id , $email , $role) ;
 
 			if($role == '1'){
 				$salon_query = "INSERT INTO salon (name , phone_number , email , address , area , salon_id , time) 
@@ -58,7 +59,7 @@
 					die("QUERY ERROR ".mysqli_error($conn)) ;
 				}	
 				else{
-					header("Location: ../index.php") ;
+					Login($conn , $email , $password) ;
 				}			
 			}
 			else{
@@ -70,7 +71,7 @@
 					die("QUERY ERROR ".mysqli_error($conn)) ;
 				}	
 				else{
-					header("Location: ../index.php") ;
+					Login($conn , $email , $password) ;
 				}
 
 			}
