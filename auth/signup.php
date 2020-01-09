@@ -4,7 +4,6 @@
 	include "encryption.php" ;
 	include "../services/email.service.php" ;
 	include "../services/login.service.php" ;
-
 	$enc = new Encryption() ;
 
 	if(isset($_POST['signup'])){
@@ -23,7 +22,7 @@
 		$address = mysqli_real_escape_string($conn , $address) ;
 		$phone = mysqli_real_escape_string($conn , $phone) ;
 		$role = mysqli_real_escape_string($conn , $role) ;
-
+		$password_enc=$enc->level_4($password);
 
 		if($role == "0") {
 			$gender = mysqli_real_escape_string($conn , $_POST['gender']) ;
@@ -33,7 +32,7 @@
 		}
 
 		$auth_query = "INSERT INTO authentication (email , password , is_verified , is_paid , is_salon , is_logged_in) 
-					   VALUES ('$email' , '$enc->level_4($password)' , '0' , '1' , '$role' , 0)" ;
+					   VALUES ('$email' , '$password_enc' , '0' , '1' , '$role' , 0)" ;
 
 		$auth_result = mysqli_query($conn, $auth_query) ;
 
@@ -42,10 +41,10 @@
 		}
 		else{
 
-			$id_query = "SELECT * FROM authentication WHERE email = '$email'" ;
-			$id_result = mysqli_query($conn , $id_query) ;
-			$row = mysqli_fetch_assoc($id_result) ;
-			$id = $row['auth_id'] ;
+			// $id_query = "SELECT * FROM authentication WHERE email = '$email'" ;
+			// $id_result = mysqli_query($conn , $id_query) ;
+			// $row = mysqli_fetch_assoc($id_result) ;
+			$id = mysqli_insert_id($conn);
 
 			//SENDING VERIFICATION MAIL
 			// emailService($conn , $id , $email , $role) ;
@@ -71,7 +70,9 @@
 					die("QUERY ERROR ".mysqli_error($conn)) ;
 				}	
 				else{
+					echo "new user registered check";
 					Login($conn , $email , $password) ;
+					echo "new user registered check";
 				}
 
 			}

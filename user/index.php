@@ -14,8 +14,9 @@ include "../common/all_header_files.php";
 <body>
     <?php include "../nav/inner_top.php" ?>
     <!-- checking is user login -->
-    <?php if(!isset($_SESSION['user'])){ header("Location: ../");}?>
+    <?php if(!isset($_SESSION['user']) || !isset($_SESSION['role'])){ header("Location: ../");}?>
     <!-- chck the exxist person iser user or salon -->
+    
 
 </body>
 </html>

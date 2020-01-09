@@ -49,6 +49,6 @@
 <div class="line"></div>
 <script>
 go=()=>{
-  window.location.replace("../search/");
+  window.open("/salonx/search/","_self");
 }
 </script>
