@@ -18,7 +18,7 @@
     <span class="navbar-toggler-icon"></span>
   </button> -->
 
-  <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="container">
       <ul class="nav justify-content-center">
          <form style="width: 75%">
@@ -31,7 +31,7 @@
          </form>
       </ul>
     </div>
-  </div> -->
+  </div>
 
   <?php if(isset($_SESSION['user'])){
 
