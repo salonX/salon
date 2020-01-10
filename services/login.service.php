@@ -3,11 +3,13 @@
 	
 
 	function Login($conn , $email , $password) {
+		echo "LOgin check";
 		$email = mysqli_real_escape_string($conn , $email) ;
-		$password = mysqli_real_escape_string($conn , $password);
+		// $password = mysqli_real_escape_string($conn , $password);
 		// hashing of password
-		$password=$enc->level_4($password);
 		$enc = new Encryption() ;
+		$password=$enc->level_4($password);
+		
 
 		$query = "SELECT * FROM authentication WHERE email = '$email' " ;
 		$result = mysqli_query($conn, $query) ;
@@ -70,12 +72,12 @@
 					$count=mysqli_num_rows($user_data);
 					if($count==1){
 						$user_row=mysqli_fetch_assoc($user_data);
-						
+						$_SESSION['user_info']=json_encode($user_row);
 						?>
 						<script>
 						// this will set cookie for 3 days
 						// go throgth it --> ../js/cookie.js
-						setCookie("user_info", JSON.stringify(<?php echo json_encode($user_row)?>),3);
+						// setCookie("user_info", JSON.stringify(<? //php echo json_encode($user_row)?>),3);
 						// console.log(getCookie("user_info"));
 						</script>
 						<?php
@@ -90,11 +92,12 @@
 					$count=mysqli_num_rows($salon_data);
 					if($count==1){
 						$salon_row=mysqli_fetch_assoc($salon_data);
+						$_SESSION['salon_info']=json_encode($salon_row);
 						?>
 						<script>
 						// this will set cookie for 3 days
 						// go throgth it --> ../js/cookie.js
-						setCookie("salon_info", JSON.stringify(<?php echo json_encode($salon_row)?>),3);
+						// setCookie("salon_info", JSON.stringify(<?php //echo json_encode($salon_row)?>),3);
 						</script>
 						<?php
 					}else{
@@ -106,6 +109,8 @@
 				header("Location: ../index.php");
 			}
 		}
+		header("Location: ../index.php");
 	}
+
 
 ?>
