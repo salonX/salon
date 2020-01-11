@@ -1,4 +1,4 @@
-
+<?php ob_start(); ?>
 <style type="text/css">
   
   .line{
@@ -40,16 +40,16 @@
   if($_SESSION['role']==1){
       $details=json_decode($_SESSION['salon_info'],true);
    }else{
-    $details=json_decode($_SESSION['salon_info'],true);
+    $details=json_decode($_SESSION['user_info'],true);
    }
     // ****---------------*******------------****
  
     ?>
     <!-- BUTTON GROUP OF CART BOOKING ADD PRODUCT -->
     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-light">Left</button>
-      <button type="button" class="btn btn-light">Middle</button>
-      <button type="button" class="btn btn-light">Right</button>
+      <button type="button" class="btn btn-light">Orders</button>
+      <button type="button" class="btn btn-light"></button>
+      <button type="button" class="btn btn-light"></button>
     </div>
     <!-- HTML DROPDOWN WHEN LOGIN -->
     <div class="dropdown  pl-1">
@@ -57,9 +57,11 @@
         <b><?php echo $details['name'];?>!</b>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+        <a class="dropdown-item" href="#">Account</a>
+        <a class="dropdown-item" href="#">Liked</a>
+        <a class="dropdown-item" href="#">Logout</a>
+        <a class="dropdown-item" href="#">Notification</a>
+
       </div>
     </div>
 

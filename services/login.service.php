@@ -67,20 +67,12 @@
 				// THIS IS THE SCRIPT : WHICH SET DATA INTO BROWSER > DETAILS OF USER/SALON
 
 				if($row['is_salon']==0){
-					$sql_for_user_data="SELECT name,date_of_birth,gender,phone_number,email,area,city,image FROM user where user_id=9";
+					$sql_for_user_data="SELECT name,date_of_birth,gender,phone_number,email,area,city,image FROM user where user_id=".$row['auth_id'];
 					$user_data=mysqli_query($conn,$sql_for_user_data);
 					$count=mysqli_num_rows($user_data);
 					if($count==1){
 						$user_row=mysqli_fetch_assoc($user_data);
 						$_SESSION['user_info']=json_encode($user_row);
-						?>
-						<script>
-						// this will set cookie for 3 days
-						// go throgth it --> ../js/cookie.js
-						// setCookie("user_info", JSON.stringify(<? //php echo json_encode($user_row)?>),3);
-						// console.log(getCookie("user_info"));
-						</script>
-						<?php
 						
 					}else{
 						header("Location: logout.php");
@@ -93,13 +85,7 @@
 					if($count==1){
 						$salon_row=mysqli_fetch_assoc($salon_data);
 						$_SESSION['salon_info']=json_encode($salon_row);
-						?>
-						<script>
-						// this will set cookie for 3 days
-						// go throgth it --> ../js/cookie.js
-						// setCookie("salon_info", JSON.stringify(<?php //echo json_encode($salon_row)?>),3);
-						</script>
-						<?php
+						header('Location: ../salon');
 					}else{
 						header("Location: logout.php");
 					}
