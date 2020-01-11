@@ -1,4 +1,4 @@
-
+<?php ob_start(); ?>
 <style type="text/css">
   
   .line{
@@ -40,11 +40,12 @@
   if($_SESSION['role']==1){
       $details=json_decode($_SESSION['salon_info'],true);
    }else{
-    $details=json_decode($_SESSION['salon_info'],true);
+    $details=json_decode($_SESSION['user_info'],true);
    }
     // ****---------------*******------------****
  
     ?>
+
     <!-- BUTTON GROUP OF CART BOOKING ADD PRODUCT -->
     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-light">Left</button>

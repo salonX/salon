@@ -1,7 +1,9 @@
 <?php
-session_start();
-if (isset($_SESSION['salon_id'])){
-
+// session_start();
+if (isset($_SESSION['user'])){
+	if($_SESSION['role'] == 0){
+		 header("Location: http://localhost/salonx/");
+	}
 }else{
     // delete ALL COKIES AND CLEAN BROWSER
     header("Location: http://localhost/salonx/");
@@ -10,7 +12,7 @@ if (isset($_SESSION['salon_id'])){
 
 
 
-session_write_close();
+// session_write_close();
 
 
 
