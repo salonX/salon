@@ -114,24 +114,95 @@
 
 	</style>
 </head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <body>
 
 	<div class="option container px-3">
 		<div class="row pt2">
-			<div class="col-sm-1"></div>
-			<div class="col-sm-3" style="border-bottom: solid black 1px;" id="login_option_check">
+			<!-- <div class="col-sm-1"></div> -->
+			<div class="col-6"  id="login_option_check">
 				<h2 style=" font-family: 'Dancing script'; cursor: pointer;" class="text-center">
 					<span id="login_option"><b>Login</b></span>
 				</h2>
 			</div>
-			<div class="col-sm-2"></div>
-			<div class="col-sm-3"  id="signup_option_check">
+			<!-- <div class="col-sm-2"></div> -->
+			<div class="col-6"  id="signup_option_check">
 				<h2 style=" font-family: 'Dancing script' ; cursor: pointer;" class="text-center">
 					<span id="signup_option"><b>Signup</b></span>
 				</h2>
 			</div>
 		</div>
 	</div>
+	<!-- <span id="signup_option"><b>Signup</b></span>
+					<span id="login_option"><b>Login</b></span> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					
 
 	<div class="container p-3" id="login" >
 
@@ -161,7 +232,7 @@
 
 		<div class="row fadeIn animated">
 			<div class="col-sm-1"></div>
-			<div class="col-sm-3 my-border d-flex flex-wrap align-items-center">
+			<div class="col-sm-3 my-border d-flex flex-wrap align-items-center w3-hide-small">
 				<img src="../images/logo.jpg" class="img-fluid">
 			</div>
 
@@ -170,14 +241,14 @@
 					<div class="col-2"></div>
 					<div class="col-sm-8">
 					 <form action="../auth/login.php" method="post">
-						<h1 class="text-center text-success"><b>Login</b></h1>
-				        <p class="text-center text-muted">Sign in with your social media account</p>
-						<div class="social-btn text-center">
+						<h3 class="text-center text-success"><b>Login</b></h3>
+				        <!-- <p class="text-center text-muted">Sign in with your social media account</p> -->
+						<!-- <div class="social-btn text-center">
 							<a href="#" class="btn btn-primary btn-lg" title="Facebook"><i class="fa fa-facebook"></i></a>
 							<a href="#" class="btn btn-info btn-lg" title="Twitter"><i class="fa fa-twitter"></i></a>
 							<a href="#" class="btn btn-danger btn-lg" title="Google"><i class="fa fa-google"></i></a>
-						</div>
-						<div class="or-seperator"><b>or</b></div>
+						</div> -->
+						<!-- <div class="or-seperator"><b>or</b></div> -->
 				        <div class="form-group">
 				        	<input type="email" class="form-control input-lg" name="email" placeholder="Email" required="required">
 				        </div>
@@ -232,7 +303,7 @@
 
 		<div class="row animated fadeIn">
 			<div class="col-sm-1"></div>
-			<div class="col-sm-3 my-border d-flex flex-wrap align-items-center">
+			<div class="col-sm-3 my-border d-flex flex-wrap align-items-center w3-hide-small">
 				<img src="../images/logo.jpg" class="img-fluid">
 			</div>
 
@@ -240,24 +311,37 @@
 				<div class="row">
 					<div class="col-1"></div>
 					<div class="col-sm-10">
-						<h1 class="text-center text-success"><b>Sign Up</b></h1>
-				        <p class="text-center text-muted">Sign in with your social media account</p>
-						<div class="social-btn text-center">
-							<a href="#" class="btn btn-primary btn-lg" title="Facebook"><i class="fa fa-facebook"></i></a>
-							<a href="#" class="btn btn-info btn-lg" title="Twitter"><i class="fa fa-twitter"></i></a>
-							<a href="#" class="btn btn-danger btn-lg" title="Google"><i class="fa fa-google"></i></a>
-						</div>
-						<div class="or-seperator"><b>or</b></div>
+						<h3 class="text-center text-success"><b>Sign Up</b></h3>
+				        
 
 						<div class="row" style="margin: 0">
-							<div class="col-sm-6" id="user_option" style="border-bottom: solid green 1px; cursor: pointer; color: green">
-								<h2 class="text-center" style="font-family: 'Dancing script';"><b>User</b></h2>
+							<div class="col-6" id="user_option" style="border-bottom: solid green 1px; cursor: pointer; color: green">
+								<h4 class="text-center" style="font-family: 'Dancing script';"><b>User</b></h4>
 							</div>
-							<div class="col-sm-6" id="salon_option" style="cursor: pointer;"> 
-								<h2 class="text-center" style="font-family: 'Dancing script'"><b>Salon</b></h2>
+							<div class="col-6" id="salon_option" style="cursor: pointer;"> 
+								<h4 class="text-center" style="font-family: 'Dancing script'"><b>Salon</b></h4>
 							</div>
 						</div>
 						<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 						<!-- ###### USER FORM ########### -->
 					<form action="../auth/signup.php" method="post" enctype="multipart/form-data">
@@ -294,6 +378,26 @@
 				        	</div>
 						</div>
 					 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 						<!-- ######## SALON FORM ############ -->
 					 <form action="../auth/signup.php" method="post" enctype="multipart/form-data">
@@ -333,6 +437,66 @@
 		</div>
 	</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<script>
 		
 		let login = document.querySelector('#login') ;
@@ -356,7 +520,7 @@
 			login_option.style.opacity = 0.6 ;
 			signup_option.style.opacity = 1 ;
 
-			signup_option_check.style.borderBottom = "solid black 1px" ;
+			// signup_option_check.style.borderBottom = "solid black 1px" ;
 			login_option_check.style.borderBottom = "solid white 0px" ;
 		});
 
@@ -367,7 +531,7 @@
 			signup_option.style.opacity = 0.6 ;
 
 			signup_option_check.style.borderBottom = "solid white 0px" ;
-			login_option_check.style.borderBottom = "solid black 1px" ;
+			// login_option_check.style.borderBottom = "solid black 1px" ;
 		});
 
 

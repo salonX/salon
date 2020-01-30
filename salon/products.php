@@ -19,7 +19,9 @@
     }else{
       header("Location: ../index.php") ;
     }
-    ?>    
+    
+    ?> 
+    
     <title>SalonX</title>
   </head>
 
@@ -45,6 +47,22 @@
       
        <!-- NAVBAR ENDS HERE -->
 
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
        <?php if($i_am_not_visit_this_page!=1){?> <!-- only for salon itself -->
       <div class="container">
         <!-- row start: acount>booking -->
@@ -60,6 +78,22 @@
 
       <!-- ends of row -->
       </div>
+
+
+
+
+
+
+
+<!-- details -->
+
+<?php include "../auth/salon/get_details.php" ; ?>   
+
+
+
+
+
+
       
 
 
@@ -81,11 +115,13 @@
 
 
         <div id="all_product" class="container">
-          <h2 style="font-family: 'Dancing Script'" >All Product</h2><br>
+          <h2 class="mt-5" style="font-family: 'Dancing Script'" >
+            <span class="btn btn-lg btn-light">All Services</span> 
+            <span class="btn btn-lg btn-light">About</span></h2><br>
 
 
           <!-- main row start below -->
-          <div class="row">
+          <div class="row" >
 
 
 
@@ -112,41 +148,6 @@
 
 
 
-
-
-              <!-- this container \/ is for detail part -->
-      <div class="col-lg-4 col-md-6  mt-2">
-      <div class="card" style="border-right:2px solid black;" >
-        <img class="card-img-top img-fluid img-thumbnail rounded"  src="../images/home_page/carousel/5.png" alt="Card image cap">
-        <div class="card-body">
-          <h2 class="card-title" style="font-family: 'Dancing Script'" ><b><?php echo $details['name'];?></b></h2>
-
-          
-          <div class="row">
-            <div class="col-md-12 col-lg-12">
-              <p class="text-muted card-text"><i class="fa fa-envelope"></i> <?php echo $details['email']; ?></p>
-            </div>
-            <div class="col-md-12 col-lg-12">
-              <p class="text-muted card-text"><i class="fa fa-phone"></i> +91 <?php echo $details['phone_number']; ?></p>
-            </div>
-            <div class="col-lg-12">
-              <p class="text-muted card-text"><i class="fa fa-address-card"></i> <?php echo $details['address'].", ".$details['area']." ". $details['city'] ;; ?></p>
-            </div>
-          </div>
-
-          <div class="row mt-2">
-              <button class="btn btn-sm btn-warning p-1 mr-1 ml-3">
-                Edit passwod
-              </button>
-              <button class="btn btn-sm btn-danger p-1">
-                Delete Acount
-              </button>
-          </div>
-          
-        </div>
-      </div>
-     </div>
-     <!-- DETAILS CONTAINER ENDS HERE ^ -->
 
 
 
@@ -172,7 +173,7 @@
 <!-- product container -->
 
 
-        <div class="col-md-8">
+        <div class="col-md-12" id="products" style="display: none;">
         <?php 
           
         // salon_id already found in above code
@@ -205,7 +206,7 @@
                 <!-- <div class="card-header bg-light"></div> -->
                 <div class="card-body p-2">
                   <div class="container-img pb-0" style="position: relative;color: rgb(247, 192, 12);">
-                    <img class="img-fluid rounded shadow-sm"
+                    <img class="img-fluid rounded shadow-sm img-thumbnail"
                       style=" display: block;
                       margin-left: auto;
                       margin-right: auto;
@@ -239,7 +240,7 @@
                   <p style="font-size:22px;" class="pl-3 mb-0">
                     <i class="fa fa-rupee text-success "></i> 
                     <b class=" text-success "><?php echo $prods[$curCol + ($curRow)*3]['price']?> /-</b>
-                    <del style="font-size:15px;" class="pl-2 text-secondary"><i class="fa fa-rupee "></i> <?php echo $prods[$curCol + ($curRow)*3]['price']?> </del>
+                    <del style="font-size:15px;" class="pl-2 text-secondary"><i class="fa fa-rupee "></i> <?php echo ($prods[$curCol + ($curRow)*3]['price'])*1.4;?> </del>
                     <b style="font-size: 15px;color: lightgray; border-radius: 5px;" class="text-warning p-2 shadow-sm ml-4 w3-right">40% off</b>
                   </p>
                   
@@ -261,17 +262,12 @@
                     <button class="btn btn-primary btn-sm btn-block">Book</button>
                   </a>
                   <?php }else{ ?>
-                    <a href="../bookings/index.php?product_id=<?php echo $id ?>" class="pl-3" style="text-decoration: none;">
+                    <a href="../auth/salon/delete_products.php?p=<?php echo $id ?>" class="pl-3" style="text-decoration: none;">
                       <button class="btn btn-outline-danger btn-sm btn-block"
-                      ><i class="fa fa-trash"></i> Mark as not available</button>
+                      ><i class="fa fa-trash"></i> Delete Service</button>
                     </a>
 
-                    <a href="../bookings/index.php?product_id=<?php echo $id ?>" class="pl-3" style="text-decoration: none;">
-                      <button 
-                        class="btn btn-outline-primary btn-sm btn-block">
-                        <i class="fa fa-edit"></i> Edit details
-                      </button>
-                    </a>
+                    
                   <?php } ?>
                     <!-- if  else end here -->
                   </div>
@@ -290,6 +286,29 @@
           ?>
           </div>
         <?php } ?>
+        </div>
+
+
+
+        <div class="col-md-12" id="about">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card shadow p-2">
+                <?php
+                  $sql="SELECT * FROM salon_description where salon_id='$salon_id'";
+                  $result=mysqli_query($conn,$sql);
+                  $row=mysqli_fetch_assoc($result);
+                  print_r($row);
+
+                ?>
+                <h4><b>About</b></h4>
+                <p><?php echo $row['about'];?></p>
+                <h4><b>services</b></h4>
+                <p><?php echo $row['services'];?></p>
+                <a href="<?php echo $row['facebook'];?>" ><i class="fa fa-facebook text-primary btn border border-primary"></i></a>
+              </div>
+            </div>
+          </div>
         </div>
 
 

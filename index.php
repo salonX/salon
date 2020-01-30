@@ -8,7 +8,7 @@
     <title>Home: Book your BOOKMYBARBER</title>
     <style>
         .centered-element {
-            height: 500px;
+            max-height: 450px;
         }
 
         .shadow-box {
@@ -30,6 +30,27 @@
         .center-text {
             text-align: center;
         }
+        /* Container holding the image and the text */
+.container-img {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+
+
+
+
+/* Bottom right text */
+.bottom-right {
+  /* background-color: black; */
+  /* opacity: 0.4; */
+  position: absolute;
+  bottom: 2px;
+  right: 22px;
+}
+
+
     </style>
 </head>
 
@@ -39,17 +60,17 @@
     <?php include "nav/top.php"?>
 
     <!-- carosal HERO 1 -->
-    <div id="carousel" class="carousel slide" data-ride="carousel">
-        <!-- images loop -->
+    <!-- <div id="carousel" class="carousel slide" data-ride="carousel">
+        
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100 centered-element " src="images/home_page/carousel/8.png" alt="First slide">
+                <img class=" w-100 centered-element fluid" src="images/home_page/carousel/first.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100 centered-element" src="images/home_page/carousel/10.png" alt="Second slide">
+                <img class="d-block w-100 centered-element fluid" src="images/home_page/carousel/10.png" alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100 centered-element" src="images/home_page/carousel/7.png" alt="Third slide">
+                <img class="d-block w-100 centered-element fluid" src="images/home_page/carousel/7.jpg" alt="Third slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
@@ -60,6 +81,29 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+    </div> -->
+
+    <div class="container">
+        <diw class="row">
+            <div class="col-4 mx-auto d-clock text-center">
+                <div class=" shadow border border-primary rounded-circle p-2">
+                    <img class="rounded-circle " src="images/home_page/women.jpg" alt="Snow" style="width:90%;">
+                    <!-- <div class="bottom-right p-0 m-0 text-dark"><b>women</b></div>  -->
+                  </div>
+            </div>
+            <div class="col-4 mx-auto d-clock text-center">
+                <div class=" shadow border border-primary rounded-circle p-2">
+                    <img class="rounded-circle " src="images/home_page/women.jpg" alt="Snow" style="width:90%;">
+                    <!-- <div class="bottom-right p-0 m-0 text-dark"><b>women</b></div>  -->
+                  </div>
+            </div>
+            <div class="col-4 mx-auto d-clock text-center">
+                <div class=" shadow border border-primary rounded-circle p-2">
+                    <img class="rounded-circle " src="images/home_page/women.jpg" alt="Snow" style="width:90%;">
+                    <!-- <div class="bottom-right p-0 m-0 text-dark"><b>women</b></div>  -->
+                  </div>
+            </div>
+        </diw>
     </div>
 
 
@@ -69,10 +113,29 @@
 
 
 
-
     <!-- icon for more sale advertise-->
-    <br><br>
+    <!-- <br><br><br><br> -->
 
+
+    <div 
+        class="container-fluid m-0 p-0" 
+        style="background-image: url('images/home_page/background.jpg');
+                width: 100%;min-height: 400px;
+                background-size: cover;
+                background-position: center;" >
+        <div class="row text-center m-0 p-0" style="background-color: black;opacity: 0.7; min-height: 400px;width: 100%;">
+            <div class="col-md-12 ">
+                <br>
+                <h1 class="text-white text-center pt-5" style="font-size: 50px;"><b>Take The Hassle Out Of Running <br>Your Barbershop</b></h1>
+                <br>
+                <button class="btn btn-lg btn-primary" style="opacity:1;"><span style="font-size: 20px;opacity: 1; ">Get Started</span></button>
+                <br><br><br>
+            </div>
+            
+        </div>    
+
+    </div>
+<!-- 
     <div class="container mt-5 ">
         <h1 class="mt-5" style="font-family: 'Dancing Script', cursive;"><b>Trending categories</b></h1>
         <br>
@@ -134,12 +197,12 @@
 
 
         </div>
-    </div>
+    </div> -->
 
 
 
 
-    <br><br><br><br>
+    <!-- <br><br><br><br> -->
 
 
 
@@ -148,16 +211,16 @@
 
 
     <!-- testtimonial  -->
-    <div class="jumbotron" style="background-color: #F5F7FA;">
+    <div class="jumbotron mt-0" style="background-color: #F5F7FA;">
 
         <div class="container ">
-            <h1 class="mb-5" style="font-family: Dancing Script;"><b>You'll love to<br>know our user experiance</b></h1>
+            <h1 class="" style="font-family: Dancing Script;"><b>You'll love to know our user experiance</b></h1>
             <div class="row">
                 <div class="owl-carousel owl-theme owl-loaded">
                     <div class="owl-stage-outer">
                         <div class="owl-stage">
                             <div class="owl-item col-md-6 col-lg-4 ">
-                                <div class="card shadow">
+                                <div class="card shadow ">
                                     <img src="./images/home_page/carousel/10.png" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>

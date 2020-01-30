@@ -12,69 +12,59 @@ function hideAndShow(){
     
     document.querySelector("#blank-card").style.display="block";
     document.querySelector("#default-card").style.display="none";
+    // document.querySelector("#input-hide").style.display="none";
 }
-
-function pridiction(data){
-    if(data.length==0 || data.indexOf(' ') == 0){
-      str="white space problem";
+var first=0;
+function pridiction(glob_data){
+  // console.log("hi khad0");
+    if(first==0){
+      hideAndShow();
+      first=1;
+    }
+    if(glob_data.length==0 || glob_data.indexOf(' ') == 0){
+      str=""+
+      "<div class='spinner'>"+
+       "<div class='bounce1'></div>"+
+        "<div class='bounce2'></div>"+
+        "<div class='bounce3'></div>"+
+     "</div>";
       document.querySelector("#search-result").innerHTML=str;
     }else{
-      document.querySelector("#search-result").innerHTML="this is loading image";
+      document.querySelector("#search-result").innerHTML=""+
+      "<div class='spinner'>"+
+       "<div class='bounce1'></div>"+
+        "<div class='bounce2'></div>"+
+        "<div class='bounce3'></div>"+
+     "</div>";
+
       $.ajax({
-          url: "../auth/search/index.php?pridiction="+data,
+          url: "../auth/search/index.php?pridiction="+glob_data,
         }).done(function(data) {
+
           let arr=[JSON.parse(data)][0];
           let arr_name=arr['name'];
-          let str="";
+          let str="<a class='list-group-item ml-0 pl-0 pr-0 pb-0'  href='search.php?q="+glob_data+"'>"+
+          "Search  for <b>"+glob_data+
+          "</b></a> ";
           console.log(arr);
           if(arr_name!="null"){
-            
+            // console.log(arr_name);
+            // console.log("khalid");
             for(let i=0;i<arr_name.length;++i){
-              str+="<li class='list-group-item ml-0 pl-0 pr-0' ><b style='font-size:20px;color:#F012BE;' >"
-              +arr_name[i]['name']+
-              "<br></b><i>"
-              +arr_name[i]['address']+", "+arr_name[i]['area']+", "+ arr_name[i]['city']+
-              "</i>"+
-              "<br><p class='pt-1'><span class='badge badge-secondary p-1'>"+arr_name[i]['phone_number']+
-              "</span> <span class='badge badge-secondary  p-1'>"
-              +arr_name[i]['email']+
-              "</span>"+
-              "</span> <span class='badge badge-info  p-1'>"
-              +"read more..."+
-              "</span>"+
-              "</p>"
-              +"</li>";
+              str+="<a class='list-group-item ml-0 pl-0 pr-0 pb-0'  href='../salon/products.php?salon_id="+arr_name[i]['salon_id']+"'><b>"
+              +arr_name[i]['name']+"</b></br><i ><small class='text-secondary'>"
+              +arr_name[i]['address']+", <b>"+arr_name[i]['area']+", "+ arr_name[i]['city']+
+              "</b></i></small><a>";
             }
           }
           let arr_city=arr['city']
 
           if(arr_city!="null"){
-            console.log("city");
             for(let i=0;i<arr_city.length;++i){
-              str+="<li class='list-group-item ml-0 pl-0 pr-0 pb-0'  >"
-              +"<span style='font-size:20px;color:#F012BE;' >"+arr_city[i]['name']+"</span>"+
-              
-
-
-
-
-              "</br><i>"
+              str+="<a class='list-group-item ml-0 pl-0 pr-0 pb-0 text-secondary'  href='../salon/products.php?salon_id="+arr_city[i]['salon_id']+"'>"
+              +arr_city[i]['name']+"</br><i ><small class=''>"
               +arr_city[i]['address']+", <b>"+arr_city[i]['area']+", "+ arr_city[i]['city']+
-              "</b></i>"
-
-
-
-
-
-              +"<br><p class='pt-1'><span class='badge badge-secondary p-1'>"+arr_city[i]['phone_number']+
-              "</span> <span class='badge badge-secondary  p-1'>"
-              +arr_city[i]['email']+
-              "</span>"+
-              " <span class='badge badge-info  p-1'>"
-              +"read more..."+
-              "</span>"+
-              "</p>"+
-              "</li>";
+              "</b></i></small><a>";
             }
           }
           if(str.length==0){

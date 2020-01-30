@@ -19,6 +19,9 @@
             top: 20px;
             left: 88%;
         } 
+        .list-group-item:hover{
+            color:darkolivegreen;
+        }
           
         
           
@@ -33,26 +36,91 @@
             padding-top: 10px; 
             /* text-align: center;  */
         } 
+
+
+.spinner {
+  margin-top:30px;
+  margin-bottom:30px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: red;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
     </style> 
 </head>
 <body  style="font-family: 'Ibarra Real Nova', serif;">
 
+<!-- navigation for search bar start here -->
+<div class="container-fluid " onclick="hideAndShow()"  style="background-image: linear-gradient(to right,red, rgb(226, 65, 92));" >
+        <div class="row ">
+            <div class="col-6 mx-auto d-block">
+                <h1 class="text-white text-center" style="font-weight: bolder;font-family: 'Dancing Script'"><b>SalonX</b></h1>
+                
+            
+            </div>
+            <div class="col-12 mx-auto d-block pb-3">
+                <input 
+                type="text" 
+                id="input" 
+                onkeyup="pridiction(this.value)"
+                style="font-size: 20px;font-weight: bolder;font-family: 'Dancing Script'" 
+                placeholder="Type to search..."
+                class="w-100 form-control p-2 input-field shadow-lg">
+            </div>
+        </div>
+    </div>
+    <!-- END>>navigation for search bar start here -->
 
 
 <div class="container ">
     
     <!-- START>search query box -->
-    <div class="row pl-1 pr-1 pt-1 input-icons"  onclick="hideAndShow()" >
+    <!-- <div class="row pl-1 pr-1 pt-1 input-icons"   style="display:none;">
         <input 
             type="text" 
             id="input" 
+            onload="focus()"
             style="font-size: 20px;" 
             placeholder="Type to search..."
-            onkeyup="pridiction(this.value)"
-            class="w-100 form-control p-4 input-field">
-        <i class="fa fa-search icon"></i>
-    </div>
+            
+            class="w-100 form-control p-2 input-field">
+        <i class="fa fa-search icon bg-danger"></i>
+    </div> -->
     <!-- END>search query box -->
+    
 
 <!-- default item inside the container START -->
     <div id="default-card" >
@@ -255,7 +323,10 @@
     </div>
 <!-- default item inside the container ends -->
 </div>
-<div class="container  mt-0 " id="blank-card"  style="display: none;">
+
+
+
+<div class="container-fluid  mt-0 " id="blank-card"  style="display: none;">
     <div class="row pl-1 pr-1 pb-1 pt-0">
         <div class="card w-100 pt-0">
             
@@ -294,6 +365,7 @@
 <script>
 
     function caros() {
+        $('#input').focus();
         if (window.innerWidth >= 700) {
             var it=10
             var it_p=4
