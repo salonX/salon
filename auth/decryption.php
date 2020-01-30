@@ -17,10 +17,16 @@
             return $decryption; 
         }
 
-        public function level_2($data)
+        public function level_2($encrypted_data)
         {
-            # code...
-            return $data;
+            $ciphering = "AES-128-CTR"; 
+            $options = 0; 
+            $decryption_iv = '1235-7785-998565'; 
+            $decryption_key = "9978-2365-9878-2023"; 
+            $decryption=openssl_decrypt ($encrypted_data, $ciphering, 
+                    $decryption_key, $options, $decryption_iv); 
+
+            return $decryption;
         }
 
         public function level_3($data)

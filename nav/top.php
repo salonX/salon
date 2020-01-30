@@ -1,89 +1,315 @@
-<?php ob_start(); ?>
-<style type="text/css">
-  
-  .line{
-    height: 0.5px ;
-    width: 100% ;
-    background-color: pink;
+<?php
+  $isLogin=true;
+  $isSalon=false;
+  if(isset($_SESSION['user']) && $_SESSION['role']==1){
+    $details=json_decode($_SESSION['salon_info'],true);
+    $isSalon=true;
+  }else if(isset($_SESSION['user']) && $_SESSION['role']==0){
+    $details=json_decode($_SESSION['user_info'],true);
+    $isSalon=false;
+  } else{
+    $details=Array("name"=>"User");
+    $isLogin=false;
   }
 
-</style>
+  // print_r($details);
+
+?>
+  
+  
+  <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-white border-bottom ">
+        <a class="navbar-brand" href=""><img src="images/logo.jpg" alt="" style="max-width: 70px;" ></a>
+        
+        <?php if(!$isLogin){?>
+        <a
+            href="register/login.php"
+            class="btn btn-sm btn-outline-primary d-lg-none " 
+            type="button"  ><b>Login/Register</b></a>
+        <?php }?>
 
 
-<nav class="navbar navbar-expand-lg navbar-light container">
-  <div class="contaner">
-     <a class="navbar-brand" href="#"><img src="images/logo.jpg" height="30" width="75"></a>
-  </div>
-  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button> -->
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <div class="container">
-      <ul class="nav justify-content-center">
-         <form style="width: 75%">
-          <div class="input-group" style="border-radius: 25px;">
-            <input type="text" class="form-control p-2" onclick="go()" placeholder="Search" style="border-radius: 0">
-            <div class="input-group-append">
-              <div class="input-group-text" style="border-radius: 0"><i class="fa fa-search icon"></i></div>
+
+
+        <?php if($isLogin){?>
+        <div class="dropdown show btn btn-light btn-sm d-lg-none" style="cursor: pointer;">
+            
+            <div class=" dropdown-toggle" href="salon/" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Hello! <b><?php echo $details['name'];?></b>
             </div>
-          </div>
-         </form>
-      </ul>
-    </div>
-  </div>
 
-  <?php if(isset($_SESSION['user'])){
 
-    // ****---------------*******------------****
-    // PHP DETAILS
-  if($_SESSION['role']==1){
-      $details=json_decode($_SESSION['salon_info'],true);
-   }else{
-    $details=json_decode($_SESSION['user_info'],true);
-   }
-    // ****---------------*******------------****
- 
-    ?>
-    <!-- BUTTON GROUP OF CART BOOKING ADD PRODUCT -->
-    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-light">Orders</button>
-      <button type="button" class="btn btn-light"></button>
-      <button type="button" class="btn btn-light"></button>
-    </div>
-    <!-- HTML DROPDOWN WHEN LOGIN -->
-    <div class="dropdown  pl-1">
-      <button class="btn btn-sm btn-light dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <b><?php echo $details['name'];?>!</b>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Account</a>
-        <a class="dropdown-item" href="#">Liked</a>
-        <a class="dropdown-item" href="#">Logout</a>
-        <a class="dropdown-item" href="#">Notification</a>
 
-      </div>
-    </div>
 
-    <a href="auth/logout.php" class="pl-1">
-      <button class="btn btn-danger btn-sm  my-2 my-sm-0" type="button" style="border-radius: 0;">Logout</button>
-    </a>
-<!--ENDS==> HTML DROPDOWN WHEN LOGIN -->
-  <?php } else { ?>
 
-  <!-- HTML DROPDOWN RESGITER -->
-    <a href="register/login.php">
-      <button class="btn btn-primary my-2 my-sm-0" type="button" style="border-radius: 0;">Login/signup</button>
-    </a>
-  <!--ENDS==> HTML DROPDOWN RESGITER -->
-  <?php }?>
 
-</nav>
-<div class="line"></div>
+
+            <?php if($isSalon==true){?>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item text-dark" href="salon/"><i class="fa fa-user"></i> Profile</a>
+                <a class="dropdown-item text-dark" href="salon/orders.php"><i class="fa fa-cart-plus"></i> orders</a>
+                <a class="dropdown-item text-dark" href="salon/addproduct.php"><i class="fa fa-plus"></i> Add Service</a>
+                <a class="dropdown-item text-dark" href="salon/products.php"><i class="fa fa-bookmark"></i> All Services</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-secondary" href="salon/address.php"><i class="fa fa-map-marker"></i> Manage Address</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-muted" href="salon/about.php"><i class="fa fa-briefcase"></i> Describe your Business</a>
+                <a class="dropdown-item text-success" href="salon/login_security.php"><i class="fa fa-shield text-success"></i> Login And Security</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-danger" href="auth/logout.php"><i class="fa fa-lock"></i> Logout</a>
+              </div>
+
+
+
+
+
+
+
+
+
+
+            
+
+            <?php }else if($isLogin){?>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item text-dark" href="user/"><i class="fa fa-user"></i> Profile</a>
+                <a class="dropdown-item text-dark" href="user/orders.php"><i class="fa fa-cart-plus"></i> Booking</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-secondary" href="user/edit_profile.php"><i class="fa fa-pencil"></i> Edit Profile</a>
+                <a class="dropdown-item text-dark" href="user/edit_password.php"><i class="fa fa-shield "></i> Edit Password</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-danger" href="auth/logout.php"><i class="fa fa-lock"></i> Logout</a>
+              </div>
+
+
+
+
+
+
+
+
+
+
+            <?php }else{?>
+
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                
+                <a class="dropdown-item text-danger" href="auth/logout.php"><i class="fa fa-lock"></i> Logout</a>
+              </div>
+            <?php }?>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+            <?php }?>
+            <?php if(!$isSalon){?>
+            <input 
+            type="text" 
+            placeholder="Search salon or Address..." 
+            class="form-control  d-lg-none mt-1" 
+            onclick="go()"
+            style="max-width: 100%;">
+            <?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+      
+
+
+
+
+        <?php if($isLogin && $isSalon){?>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="salon/">Profile </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="salon/addproduct.php">Add new service</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="salon/products.php">View services</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Settings
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item text-warning" href="user/edit_profile.php"><i class="fa fa-map-marker"></i> Manage Address</a>
+                <a class="dropdown-item" href="salon/address.php"><i class="fa fa-briefcase"></i> Describe Business</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-success" href="salon/login_security.php"><i class="fa fa-shield"></i> Login and Security</a>
+              </div>
+            </li>
+          </ul>
+            <a href="salon/orders.php" class="btn btn-primary ml-2  w3-hide-small w3-hide-medium" type="button" ><b>
+                <i class="fa fa-cart-plus"></i>
+            </b></a>
+            <a href="auth/logout.php" class="btn btn-danger ml-2 w3-hide-small w3-hide-medium" type="button" ><b>
+                Logout
+            </b></a>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <?php }else if($isLogin){ ?>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="user/">Profile </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="user/orders.php">Booking</a>
+            </li> -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Settings
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item text-dark" href="user/edit_profile.php"><i class="fa fa-pencil"></i> Edit Profile</a>
+                <a class="dropdown-item" href="user/edit_password.php"><i class="fa fa-lock"></i> Change Password</a>
+              </div>
+            </li>
+          </ul>
+            <input 
+                type="text" 
+                class="form-control  w3-hide-small w3-hide-medium" 
+                onclick="go()"
+                placeholder="Search salon,address or services..."
+                style="width: 50%;">
+            <a href="user/orders.php" class="btn btn-primary ml-2  w3-hide-small w3-hide-medium" type="button" ><b>
+                <i class="fa fa-cart-plus"></i>
+            </b></a>
+            <a href="auth/logout.php" class="btn btn-danger ml-2 w3-hide-small w3-hide-medium" type="button" ><b>
+                Logout
+            </b></a>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <?php }else{?>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="team/">About us </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="team/contact.php">Contact us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="team/guidelines.php">Guidelines</a>
+            </li>
+          </ul>   
+            <input 
+                type="text" 
+                class="form-control  w3-hide-small w3-hide-medium" 
+                onclick="go()"
+                placeholder="Search salon,address or services..."
+                style="width: 50%;">
+            <a href="register/login.php" class="btn btn-outline-success ml-2 w3-hide-small w3-hide-medium" type="button" ><b>
+                Login/Register
+            </b></a>
+        </div>
+        <?php }?>
+
+
+
+
+
+
+
+
+
+
+
+
+    </nav>
+
+
+
 <script>
 go=()=>{
-  // Window.open("./search/")
-  // console.log("hi khalid")
   window.open("/salonx/search/","_self");
 }
+
 </script>

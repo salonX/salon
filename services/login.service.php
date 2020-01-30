@@ -61,7 +61,7 @@
 				ob_start() ;
 				session_start() ;
 				$_SESSION['user'] = $enc->level_2($row['auth_id']);
-				$_SESSION['role'] = $enc->level_2($row['is_salon']) ;
+				$_SESSION['role'] = $row['is_salon'];
 
 				// set cookie for the data after login
 				// THIS IS THE SCRIPT : WHICH SET DATA INTO BROWSER > DETAILS OF USER/SALON

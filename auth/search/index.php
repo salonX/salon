@@ -1,7 +1,8 @@
 <?php 
 include "../connection.php";
 include "../invalid_query.php";
-
+include "../encryption.php";
+$enc=new Encryption();
 // work for pridiction
 
 
@@ -21,8 +22,7 @@ if(isset($_REQUEST['pridiction'])){
                                 "city" => $row['city'],
                                 "address"=>$row['address'],
                                 "area" => $row['area'],
-                                "phone_number" => $row['phone_number'],
-                                "email" => $row['email']
+                                "salon_id" =>$enc->level_3($row['salon_id'])
                             );
             }
             $json_arr['name']=$return_arr;
@@ -44,8 +44,8 @@ if(isset($_REQUEST['pridiction'])){
                                 "city" => $row['city'],
                                 "address"=>$row['address'],
                                 "area" => $row['area'],
-                                "phone_number" => $row['phone_number'],
-                                "email" => $row['email']
+                                
+                                "salon_id" =>$enc->level_3($row['salon_id'])
                             );
             }
             $json_arr['city']=$return_arr;
